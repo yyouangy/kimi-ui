@@ -1,18 +1,17 @@
 <template>
-  <h1>袁国耀</h1>
-
+  <h1>ygy</h1>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "Frank",
   props: {
-    msg: String
+    msg: String,
   },
   data() {
     return {
-      count: 0
-    }
-  }
-}
+      count: 0,
+    };
+  },
+};
 </script>
