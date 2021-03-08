@@ -1,5 +1,5 @@
 <template>
-  <button :class="classes" class="k-button">
+  <button :class="classes" class="k-button" v-bind="$attrs">
     <span v-if="loading" class="k-loadingIndicator"></span>
     <slot />
   </button>

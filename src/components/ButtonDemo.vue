@@ -1,6 +1,6 @@
 <template>
   <h1>示例1</h1>
-  <k-button>默认按钮</k-button>
+  <k-button >默认按钮</k-button>
   <k-button theme="primary">主要按钮</k-button>
   <k-button theme="success">成功按钮</k-button>
   <k-button theme="warning">警告按钮</k-button>
@@ -20,10 +20,10 @@ export default {
     kButton,
   },
   setup() {
-    const log = () => {
+    const onClick = () => {
       console.log("袁国耀");
     };
-    return { log };
+    return { onClick};
   },
 };
 </script>
