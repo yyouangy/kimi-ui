@@ -7,7 +7,15 @@
     :closeByClickMask="false"
     :ok="f1"
     :cancel="f2"
-  />
+  >
+    <template v-slot:title>
+      <strong>提示</strong>
+    </template>
+    <template v-slot:content>
+      <strong>这是第1条内容</strong>
+      <div>这是第2条内容</div></template
+    ></k-dialog
+  >
 </template>
 
 <script lang='ts'>

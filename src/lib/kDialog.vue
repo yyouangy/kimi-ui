@@ -4,11 +4,11 @@
     <div class="k-dialog-wrapper">
       <div class="k-dialog">
         <header>
-          标题 <span class="k-dialog-close" @click="closeDialog"></span>
+          <slot name="title" />
+          <span class="k-dialog-close" @click="closeDialog"></span>
         </header>
         <main>
-          <p>第一行字</p>
-          <p>第二行字</p>
+          <slot name="content" />
         </main>
         <footer>
           <k-button theme="primary" @click="ok">Ok</k-button>
@@ -24,6 +24,10 @@ import kButton from "./kButton.vue";
 
 export default {
   props: {
+    title: {
+      type: String,
+      default: "提示",
+    },
     visible: {
       type: Boolean,
       default: false,
