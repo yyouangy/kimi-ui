@@ -1,25 +1,28 @@
 <template>
   <template v-if="visible">
-    <div class="k-dialog-Mask" @click="onClickMask"></div>
-    <div class="k-dialog-wrapper">
-      <div class="k-dialog">
-        <header>
-          <slot name="title" />
-          <span class="k-dialog-close" @click="closeDialog"></span>
-        </header>
-        <main>
-          <slot name="content" />
-        </main>
-        <footer>
-          <k-button theme="primary" @click="ok">Ok</k-button>
-          <k-button @click="cancel">Cancel</k-button>
-        </footer>
-      </div>
-    </div>
+    <teleport to="body"
+      ><div class="k-dialog-Mask" @click="onClickMask"></div>
+      <div class="k-dialog-wrapper">
+        <div class="k-dialog">
+          <header>
+            <slot name="title" />
+            <span class="k-dialog-close" @click="closeDialog"></span>
+          </header>
+          <main>
+            <slot name="content" />
+          </main>
+          <footer>
+            <k-button theme="primary" @click="ok">Ok</k-button>
+            <k-button @click="cancel">Cancel</k-button>
+          </footer>
+        </div>
+      </div></teleport
+    >
   </template>
 </template>
 
 <script>
+import { watch } from "vue";
 import kButton from "./kButton.vue";
 
 export default {

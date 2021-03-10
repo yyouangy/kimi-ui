@@ -23,6 +23,7 @@ export default {
       default: false,
     },
   },
+
   setup(props) {
     const { theme, size } = props;
     const classes = computed(() => {
