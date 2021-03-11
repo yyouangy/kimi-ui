@@ -1,25 +1,37 @@
 <template>
   <div class="topnav">
-    <div class="logo">
-      <img src="../assets/logo.png" alt="" />
-    </div>
+    <router-link to="/" class="logo">
+      <svg>
+        <use xlink:href="#icon-ziyuan"></use>
+      </svg>
+    </router-link>
     <ul class="menu">
-      <li>菜单1</li>
-      <li>菜单2</li>
+      <li>
+        <router-link to="/doc">文档</router-link>
+      </li>
     </ul>
-    <img
+    <!-- <img
+      v-if="toggleBut tonVisible"
       @click="toggleAside"
       src="../assets/category.png"
       class="category"
       alt=""
-    />
+    /> -->
+    <svg v-if="toggleButtonVisible" class="category" @click="toggleAside">
+      <use xlink:href="#icon-menu"></use>
+    </svg>
   </div>
 </template>
 
 <script lang='ts'>
 import { inject, Ref } from "vue";
 export default {
-  name: "Topnav",
+  props: {
+    toggleButtonVisible: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup() {
     const asideVisible = inject<Ref<boolean>>("asideVisible"); // get
     const toggleAside = () => {
@@ -33,20 +45,19 @@ export default {
 
 <style lang='scss' scoped>
 .topnav {
-  background-color: pink;
   display: flex;
   padding: 16px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 20;
   justify-content: center;
   align-items: center;
   > .logo {
     max-width: 6em;
     margin-right: auto;
-    img {
+    > svg {
       height: 40px;
       width: 50px;
     }
@@ -61,11 +72,12 @@ export default {
   .category {
     position: absolute;
     left: 16px;
-    top: 16px;
+    top: 20px;
     // img {
-    width: 45px;
-    height: 45px;
+    width: 36px;
+    height: 36px;
     display: none;
+    background: fade-out(rgb(9, 47, 90), 0.9);
     // }
   }
   @media (max-width: 500px) {

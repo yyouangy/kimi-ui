@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <slot />
-  </div>
+  介绍
 </template>
 
 <script>
-export default {};
+export default {
+
+}
 </script>
 
 <style>
+
 </style>
