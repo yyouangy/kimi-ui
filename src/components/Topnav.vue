@@ -73,12 +73,9 @@ export default {
     position: absolute;
     left: 16px;
     top: 20px;
-    // img {
     width: 36px;
     height: 36px;
     display: none;
-    background: fade-out(rgb(9, 47, 90), 0.9);
-    // }
   }
   @media (max-width: 500px) {
     > .menu {

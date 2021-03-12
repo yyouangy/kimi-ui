@@ -3,24 +3,22 @@
     <Topnav toggleButtonVisible class="nav" />
     <div class="content">
       <aside v-if="asideVisible">
-        <h2>介绍</h2>
+        <h2>文档</h2>
         <ol>
           <li>
-            <router-link to="/doc/intro">1</router-link>
+            <router-link to="/doc/intro">介绍</router-link>
           </li>
         </ol>
 
-         <h2>开始</h2>
         <ol>
           <li>
-            <router-link to="/doc/start">2</router-link>
+            <router-link to="/doc/install">安装</router-link>
           </li>
         </ol>
 
-         <h2>安装</h2>
         <ol>
           <li>
-            <router-link to="/doc/install">3</router-link>
+            <router-link to="/doc/start">快速上手</router-link>
           </li>
         </ol>
 
@@ -88,18 +86,25 @@ export default {
 aside {
   background: lightblue;
   width: 150px;
-  padding: 16px;
   position: fixed;
+  padding: 16px 0;
   top: 0;
   left: 0;
   padding-top: 70px;
   height: 100%;
   > h2 {
     margin-bottom: 4px;
+    padding: 0 16px;
   }
   > ol {
     > li {
-      padding: 4px 0;
+      > a {
+        display: block;
+        padding: 4px 16px;
+      }
+      .router-link-active {
+        background-color: #fff;
+      }
     }
   }
 }
