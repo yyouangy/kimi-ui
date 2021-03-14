@@ -62,11 +62,19 @@ export default {
   height: 100vh;
   > .nav {
     flex-shrink: 0;
+    background-color: #fff;
+    box-shadow: 0 5px 5px rgb(51 51 51 / 10%);
+    display: flex;
+    padding: 16px;
+    z-index: 10;
+    color: #6f2e6a;
+    justify-content: center;
+    align-items: center;
   }
   > .content {
     flex-grow: 1;
     padding-top: 80px;
-    padding-left: 156px;
+    padding-left: 236px;
     @media (max-width: 500px) {
       padding-left: 0;
     }
@@ -84,27 +92,54 @@ export default {
   }
 }
 aside {
-  background: lightblue;
-  width: 150px;
-  position: fixed;
-  padding: 16px 0;
+  position: absolute;
   top: 0;
   left: 0;
-  padding-top: 70px;
-  height: 100%;
+  width: 235px;
+  height: 110vh;
+  padding: 80px 0 16px;
+  background: #fff;
+  box-shadow: 5px 0 5px rgb(51 51 51 / 10%);
+  z-index: 1;
+  transition: 0.4s cubic-bezier(0.68, 0.18, 0.53, 0.18) 0.1s;
   > h2 {
     margin-bottom: 4px;
-    padding: 0 16px;
+    padding: 10px 30px 0;
   }
   > ol {
+    line-height: 40px;
     > li {
+      padding: 0 0 5px 0;
       > a {
+        position: relative;
+        height: 40px;
+        color: #6f2e6a;
         display: block;
-        padding: 4px 16px;
+        padding: 4px 50px;
+        &:hover,
+        &:focus {
+          background-color: #f4faf5;
+        }
       }
-      .router-link-active {
-        background-color: #fff;
+      .router-link-active::after {
+        content: "";
+        display: block;
+        animation: 0.8s bdrolate;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 3px;
+        height: 40px;
+        background-color: #78ccac;
       }
+    }
+  }
+  @keyframes bdrolate {
+    0% {
+      transform: rotateX(90deg);
+    }
+    100% {
+      transform: rotateX(0deg);
     }
   }
 }

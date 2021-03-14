@@ -1,6 +1,7 @@
+<demo>
+常规用法
+</demo>
 <template>
-  <h1>dialog示例</h1>
-  <h2>示例1</h2>
   <k-button @click="showDialog">打开Dialog</k-button>
   <k-dialog
     v-model:visible="visibleDialog"
@@ -16,21 +17,16 @@
       <div>这是第2条内容</div></template
     ></k-dialog
   >
-
-  <h2>示例2</h2>
-  <k-button @click="showDialogDirectly">一句话打开Dialog</k-button>
-  <k-dialog></k-dialog>
 </template>
 
-<script lang='ts'>
-import kDialog from "../lib/kDialog.vue";
-import kButton from "../lib/kButton.vue";
+<script>
+import kButton from "../../../lib/kButton.vue";
+import kDialog from "../../../lib/kDialog.vue";
 import { ref } from "vue";
-import { openDialog } from "../lib/openDialog";
 export default {
   components: {
-    kDialog,
     kButton,
+    kDialog,
   },
   setup() {
     const visibleDialog = ref(false);
@@ -43,22 +39,7 @@ export default {
     const f2 = () => {
       return false;
     };
-    const showDialogDirectly = () => {
-      openDialog({
-        title: "提示",
-        content: "内容",
-        ok: () => {
-          console.log("ok");
-        },
-        cancel: () => {
-          console.log("cancel");
-        },
-      });
-    };
-    return { visibleDialog, showDialog, f1, f2, showDialogDirectly };
+    return { visibleDialog, showDialog, f1, f2 };
   },
 };
 </script>
-
-<style>
-</style>

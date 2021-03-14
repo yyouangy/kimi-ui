@@ -1,5 +1,4 @@
 <template>
-  kTabs组件
   <div class="k-tabs">
     <div class="k-tabs-nav" ref="container">
       <div

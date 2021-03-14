@@ -1,24 +1,36 @@
 <template>
   <div>
-    <button class="k-switch" :class="{ 'k-checked': value }" @click="toggle">
+    <button
+      class="k-switch"
+      :class="{ 'k-checked': value }"
+      @click="toggle"
+      :disabled="disabled"
+    >
       <span></span>
+      <p>{{ switchState }}</p>
     </button>
   </div>
 </template>
 
 <script lang='ts'>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 export default {
   props: {
     value: Boolean,
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, context) {
     const toggle = () => {
-      // checked.value = !checked.value;
       context.emit("update:value", !props.value);
     };
+    const switchState = computed(() => {
+      return props.value ? "on" : "off";
+    });
 
-    return { toggle };
+    return { toggle, switchState };
   },
 };
 </script>
@@ -34,8 +46,7 @@ $h2: $h - 4px;
   border-radius: 15px;
   border: none;
   position: relative;
-  span {
-    // display: inline-block;
+  > span {
     width: $h2;
     height: $h2;
     background-color: #fff;
@@ -43,13 +54,38 @@ $h2: $h - 4px;
     left: 2px;
     top: 2px;
     border-radius: $h2/2;
-    transition: left 250ms;
+    transition: all 250ms;
+  }
+  > p {
+    display: inline-block;
+    width: 14px;
+    height: 22px;
+    font-size: 14px;
+    color: #fff;
+    margin: 0 7px 0 22px;
+    transition: margin 0.25s ease-in-out;
+  }
+  &:active {
+    > span {
+      width: 22px;
+    }
   }
 }
 .k-checked {
   background-color: rgb(8, 167, 230);
-  span {
+  > span {
     left: calc(100% - #{$h2} - 2px);
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      > span {
+        width: $h2 + 4px;
+      }
+    }
+  }
+  > p {
+    margin: 0 22px 0 7px;
   }
 }
 </style>

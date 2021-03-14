@@ -4,10 +4,10 @@
       <Topnav />
       <div class="banner">
         <h1>Kimi-UI</h1>
-        <h2>一个厉害的UI框架</h2>
+        <h2>一套高质量的UI组件库</h2>
         <p class="actions">
-          <a href="https://www.baidu.com" target="_blank">GitHub</a>
-          <router-link to="/doc">开始</router-link>
+          <a href="https://www.baidu.com" target="_blank">设计语言</a>
+          <router-link to="/doc">开始使用</router-link>
         </p>
       </div>
     </div>
@@ -25,7 +25,7 @@
             <use xlink:href="#icon-ts"></use>
           </svg>
           <h3>基于 TypeScript</h3>
-          <p>源代码采用 TypeScript 书写（非严格检查）</p>
+          <p>源代码采用 TypeScript 书写</p>
         </li>
         <li>
           <svg>
@@ -64,31 +64,57 @@ $green: #02bcb0;
       padding: 8px 0;
       a {
         margin: 0 8px;
-        background: $green;
         display: inline-block;
         color: #fff;
         $h: 28px;
-        border-radius: $h/2;
+        border-radius: $h;
         padding: 8px 20px;
         letter-spacing: 1px;
+
+        &:nth-child(1) {
+          background: transparent;
+          color: $green;
+          border: 1px solid $green;
+          &:hover,
+          &:focus {
+            color: #58c3b9;
+            transition: color 250ms;
+          }
+        }
+        &:nth-child(2) {
+          background: $green;
+          &:hover,
+          &:focus {
+            background-color: lighten($green, 2%);
+            transition: background-color 250ms;
+          }
+        }
       }
     }
   }
 }
 .features {
   margin: 64px auto;
-  width: 400px;
   @media (min-width: 800px) {
     width: 800px;
+    > ul {
+      > li {
+        width: 50%;
+      }
+    }
   }
   @media (min-width: 1200px) {
     width: 1200px;
+    > ul {
+      > li {
+        width: 33.3333%;
+      }
+    }
   }
   > ul {
     display: flex;
     flex-wrap: wrap;
     > li {
-      width: 400px;
       margin: 16px 0;
       display: grid;
       justify-content: start;
