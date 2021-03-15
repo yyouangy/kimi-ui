@@ -63,7 +63,7 @@ $h2: $h - 4px;
     font-size: 14px;
     color: #fff;
     margin: 0 7px 0 22px;
-    transition: margin 0.25s ease-in-out;
+    transition: margin 250ms ease-in-out;
   }
   &:active {
     > span {

@@ -107,7 +107,6 @@ aside {
     padding: 10px 30px 0;
   }
   > ol {
-    line-height: 40px;
     > li {
       padding: 0 0 5px 0;
       > a {
@@ -115,22 +114,26 @@ aside {
         height: 40px;
         color: #6f2e6a;
         display: block;
-        padding: 4px 50px;
+        padding: 0 50px;
+        line-height: 40px;
         &:hover,
         &:focus {
           background-color: #f4faf5;
         }
       }
-      .router-link-active::after {
-        content: "";
-        display: block;
-        animation: 0.8s bdrolate;
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 3px;
-        height: 40px;
-        background-color: #78ccac;
+      .router-link-active {
+        background-color: #f4faf5;
+        &::after {
+          content: "";
+          display: block;
+          animation: 0.8s bdrolate;
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 3px;
+          height: 40px;
+          background-color: #78ccac;
+        }
       }
     }
   }
