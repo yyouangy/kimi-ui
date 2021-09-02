@@ -53,8 +53,10 @@ export default {
       });
     });
     const defaults = context.slots.default();
+    console.log(defaults);
+    
     defaults.forEach((tag) => {
-      if (tag.type !== kTab) {
+      if (tag.type.name !== kTab.name) {
         throw new Error("kTabs组件的子组件必须是kTab"); //防御性编程
       }
     });
@@ -62,7 +64,6 @@ export default {
       return tag.props.title;
     });
     const select = (title: String) => {
-      console.log(title);
       context.emit("update:selected", title);
     };
     return { defaults, titles, select, selectedItem, indicator, container };

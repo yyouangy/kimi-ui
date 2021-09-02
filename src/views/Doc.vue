@@ -36,6 +36,15 @@
           <li>
             <router-link to="/doc/tabs">Tabs 组件</router-link>
           </li>
+          <li>
+            <router-link to="/doc/collapse">Collapse 组件</router-link>
+          </li>
+           <li>
+            <router-link to="/doc/pagination">Pagination 组件</router-link>
+          </li>
+          <li>
+            <router-link to="/doc/continue">未完待续...</router-link>
+          </li>
         </ol>
       </aside>
       <main>

@@ -6,7 +6,7 @@
         <h1>Kimi-UI</h1>
         <h2>一套高质量的UI组件库</h2>
         <p class="actions">
-          <a href="https://www.baidu.com" target="_blank">设计语言</a>
+          <router-link to="/doc">设计语言</router-link>
           <router-link to="/doc">开始使用</router-link>
         </p>
       </div>
@@ -18,7 +18,7 @@
             <use xlink:href="#icon-Vue"></use>
           </svg>
           <h3>基于 Vue 3</h3>
-          <p>骄傲地使用了 Vue 3 Composition API</p>
+          <p>使用了 Vue 3 Composition API</p>
         </li>
         <li>
           <svg>

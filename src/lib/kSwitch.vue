@@ -7,7 +7,8 @@
       :disabled="disabled"
     >
       <span></span>
-      <p>{{ switchState }}</p>
+      <p v-if="value" class="kaite-switch-on">on</p>
+      <p v-else class="kaite-switch-off">off</p>
     </button>
   </div>
 </template>
@@ -26,11 +27,11 @@ export default {
     const toggle = () => {
       context.emit("update:value", !props.value);
     };
-    const switchState = computed(() => {
-      return props.value ? "on" : "off";
-    });
+    // const switchState = computed(() => {
+    //   return props.value ? "on" : "off";
+    // });
 
-    return { toggle, switchState };
+    return { toggle };
   },
 };
 </script>
@@ -39,53 +40,77 @@ export default {
 $h: 22px;
 $h2: $h - 4px;
 .k-switch {
-  outline: none;
+  position: relative;
+  display: inline-block;
   width: $h * 2;
   height: $h;
-  background-color: grey;
-  border-radius: 15px;
+  line-height: $h;
+  vertical-align: middle;
   border: none;
-  position: relative;
+  padding: 0;
+  margin-bottom: 8px;
+  background-color: #bfbfbf; //#1890ff
+  border-radius: $h/2;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  &[disabled] {
+    pointer-events: none;
+  }
+
+  &:focus {
+    box-shadow: 0 0 5px rgba(191, 191, 191, 0.5);
+    &:hover {
+      box-shadow: none;
+    }
+  }
   > span {
+    position: absolute;
+    top: 2px;
+    left: 2px;
     width: $h2;
     height: $h2;
+    line-height: $h2;
+    border: none;
+    border-radius: $h/2;
     background-color: #fff;
-    position: absolute;
-    left: 2px;
-    top: 2px;
-    border-radius: $h2/2;
-    transition: all 250ms;
+    transition: all 0.25s ease-in-out;
+    display: inline-block;
   }
   > p {
-    display: inline-block;
     width: 14px;
-    height: 22px;
+    height: $h;
     font-size: 14px;
     color: #fff;
     margin: 0 7px 0 22px;
-    transition: margin 250ms ease-in-out;
+    transition: margin 0.25s ease-in-out;
   }
   &:active {
     > span {
-      width: 22px;
+      width: $h + 2px;
     }
   }
-}
-.k-checked {
-  background-color: rgb(8, 167, 230);
-  > span {
-    left: calc(100% - #{$h2} - 2px);
-    &:focus {
-      outline: none;
+  &.k-checked {
+    background-color: #1890ff;
+    > span {
+      left: calc(100% - #{$h2} - 2px);
     }
-    &:active {
-      > span {
-        width: $h2 + 4px;
+    > p {
+      margin: 0 25px 0 7px;
+    }
+    &:focus {
+      box-shadow: 0 0 5px rgba(24, 144, 255, 0.5);
+      &:hover {
+        box-shadow: none;
       }
     }
-  }
-  > p {
-    margin: 0 22px 0 7px;
+
+    &:active {
+      > span {
+        width: $h + 2px;
+        margin-left: -6px;
+      }
+    }
   }
 }
 </style>

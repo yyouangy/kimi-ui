@@ -1,5 +1,6 @@
 <template>
-  <div>Tabs示例</div>
+  <div></div>
+  <h1>Tabs 组件示例</h1>
   <Demo :component="TabsNormal" />
   <!-- <k-tabs v-model:selected="initSelected">
     <k-tab title="学习">学习</k-tab>

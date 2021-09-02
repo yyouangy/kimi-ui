@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name:'kTab'
+  name:'kCollapseItem'
 };
 </script>
 

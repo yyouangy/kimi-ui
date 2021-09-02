@@ -39,7 +39,6 @@ export default {
   setup() {
     const asideVisible = inject<Ref<boolean>>("asideVisible"); // get
     const toggleAside = () => {
-      console.log(asideVisible);
       asideVisible.value = !asideVisible.value;
     };
     return { toggleAside };
