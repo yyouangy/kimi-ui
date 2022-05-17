@@ -9,15 +9,15 @@
       <k-button @click="showCode" v-else>查看代码</k-button>
     </div>
     <div class="demo-code">
-      <pre class="language-code" v-show="codeVisible" v-html="html" />
+      <pre class="languagehtml" v-show="codeVisible" v-html="html" />
     </div>
   </div>
 </template>
 <script lang='ts'>
 import kButton from "../lib/kButton.vue";
-import "prismjs";
+import Prism from 'prismjs';
 import "prismjs/themes/prism.css";
-const Prism = window.Prism;
+import "prismjs/themes/prism-solarizedlight.css"
 import { computed, ref } from "vue";
 export default {
   components: {
@@ -47,30 +47,35 @@ export default {
 </script>
 <style lang="scss" scoped>
 $border-color: #d9d9d9;
+
 .demo {
   border: 1px solid $border-color;
   margin: 16px 0 32px;
-  > h2 {
+
+  >h2 {
     font-size: 20px;
     padding: 8px 16px;
     border-bottom: 1px solid $border-color;
   }
+
   &-component {
     padding: 16px;
   }
+
   &-actions {
     padding: 8px 16px;
     border-top: 1px dashed $border-color;
   }
+
   &-code {
     padding: 8px 16px;
     border-top: 1px dashed $border-color;
 
-    > pre {
+    >pre {
       line-height: 1.1;
       font-family: Consolas, "Courier New", Courier, monospace;
       margin: 0;
-      background-color: #282828;
+      // background-color: #282828;
     }
   }
 }
