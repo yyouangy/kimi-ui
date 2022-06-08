@@ -4,21 +4,32 @@
     <div class="demo-component">
       <component :is="component"></component>
     </div>
-    <div class="demo-actions">
-      <k-button @click="hideCode" v-if="codeVisible">隐藏代码</k-button>
-      <k-button @click="showCode" v-else>查看代码</k-button>
-    </div>
-    <div class="demo-code">
-      <pre class="languagehtml" v-show="codeVisible" v-html="html" />
+    <div class="demo-actions" @mouseenter="enter" @mouseleave="leave">
+      <div class="demo-code">
+        <div class="demo-code-content" :style="{ height: height + 'px' }">
+          <pre class="languagehtml" v-html="html" ref="codeBlock"></pre>
+        </div>
+        <div class="demo-code-control" @click="showCode">
+          <svg>
+            <use xlink:href="#icon-xiajiantou"></use>
+          </svg>
+          <transition name="fade">
+            <span class="demo-code-show" v-show="show">{{
+                codeVisible === true ? "隐藏代码" : "显示代码"
+            }}</span>
+          </transition>
+        </div>
+      </div>
     </div>
   </div>
 </template>
-<script lang='ts'>
+
+<script lang="ts">
 import kButton from "../lib/kButton.vue";
-import Prism from 'prismjs';
+import Prism from "prismjs";
 import "prismjs/themes/prism.css";
-import "prismjs/themes/prism-solarizedlight.css"
-import { computed, ref } from "vue";
+import "prismjs/themes/prism-solarizedlight.css";
+import { computed, ref, onMounted, nextTick } from "vue";
 export default {
   components: {
     kButton,
@@ -27,7 +38,12 @@ export default {
     component: Object,
   },
   setup(props) {
-    const codeVisible = ref(false);
+    const codeBlock = ref(null);
+    nextTick(() => {
+      console.log(codeBlock.value);
+    });
+    const show = ref(false);
+    const height = ref(0);
     const html = computed(() => {
       return Prism.highlight(
         props.component.__sourceCode,
@@ -35,22 +51,45 @@ export default {
         "html"
       );
     });
+    const enter = () => {
+      show.value = true;
+    };
+    const leave = () => {
+      show.value = false;
+    };
     const showCode = () => {
-      codeVisible.value = true;
+      if (height.value === 0) {
+        height.value = codeBlock.value.offsetHeight;
+        console.log(height);
+      } else {
+        height.value = 0;
+      }
     };
-    const hideCode = () => {
-      codeVisible.value = false;
+    const codeVisible = computed(() => {
+      return height.value !== 0;
+    });
+    return {
+      codeVisible,
+      Prism,
+      html,
+      showCode,
+      height,
+      codeBlock,
+      enter,
+      leave,
+      show,
     };
-    return { codeVisible, Prism, html, showCode, hideCode };
   },
 };
 </script>
+
 <style lang="scss" scoped>
 $border-color: #d9d9d9;
 
 .demo {
   border: 1px solid $border-color;
   margin: 16px 0 32px;
+  width: 60%;
 
   >h2 {
     font-size: 20px;
@@ -63,19 +102,78 @@ $border-color: #d9d9d9;
   }
 
   &-actions {
-    padding: 8px 16px;
-    border-top: 1px dashed $border-color;
+    border-top: 1px solid $border-color;
   }
 
   &-code {
-    padding: 8px 16px;
-    border-top: 1px dashed $border-color;
+    &-content {
+      transition: height 0.25s;
+      height: 0;
+      background-color: #fafafa;
+      overflow-y: hidden;
+      overflow-x: auto;
 
-    >pre {
-      line-height: 1.1;
-      font-family: Consolas, "Courier New", Courier, monospace;
-      margin: 0;
-      // background-color: #282828;
+      >pre {
+        padding: 10px 16px;
+        line-height: 1.1;
+        font-family: Consolas, "Courier New", Courier, monospace;
+        margin: 0;
+      }
+    }
+
+    &-control {
+      cursor: pointer;
+      text-align: center;
+      height: 44px;
+      line-height: 44px;
+      position: relative;
+      color: #d3dce6;
+
+      &:hover {
+        color: #00b894;
+        background-color: #f1ffff;
+        box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
+          0 2px 4px 0 rgba(232, 237, 250, 0.5);
+
+        svg {
+          transform: translateX(-35px);
+        }
+      }
+
+      svg {
+        fill: currentcolor;
+        width: 14px;
+        height: 14px;
+        transition: all 0.3s;
+      }
+
+      .demo-code-show {
+        position: absolute;
+        font-size: 14px;
+        line-height: 44px;
+        transition: all 0.3s;
+        transform: translateX(-30px);
+
+        &.fade-enter {
+          opacity: 0;
+          transform: translateX(10px);
+        }
+
+        &.fade-enter-to {
+          opacity: 1;
+          transform: translateX(-30px);
+        }
+
+        &.fade-leave {
+          opacity: 1;
+          transform: translateX(-30px);
+        }
+
+        &.fade-leave-to {
+          opacity: 0;
+          transform: translateX(0px);
+        }
+      }
     }
   }
 }
