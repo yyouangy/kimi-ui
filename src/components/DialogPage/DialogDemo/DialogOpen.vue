@@ -7,15 +7,9 @@
 </template>
 
 <script>
-import kButton from "../../../lib/kButton.vue";
-import kDialog from "../../../lib/kDialog.vue";
 import { openDialog } from "../../../lib/openDialog";
 import { ref } from "vue";
 export default {
-  components: {
-    kButton,
-    kDialog,
-  },
   setup() {
     const visibleDialog = ref(false);
     const showDialog = () => {

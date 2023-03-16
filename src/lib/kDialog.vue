@@ -1,7 +1,7 @@
 <template>
   <template v-if="visible">
     <teleport to="body"
-      ><div class="k-dialog-Mask" @click="onClickMask"></div>
+      ><div class="k-dialog-Mask" @click="onClickMask" ></div>
       <div class="k-dialog-wrapper">
         <div class="k-dialog">
           <header>
@@ -40,6 +40,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    showMask: {
+      type: Boolean,
+      default: true,
+    },
     ok: {
       type: Function,
     },
@@ -60,12 +64,12 @@ export default {
       }
     };
     const ok = () => {
-      if (props.ok && props.ok() !== false) {
+      if (props.ok?.() !== false) {
         closeDialog();
       }
     };
     const cancel = () => {
-      if (props.cancel && props.cancel() !== false) {
+      if (props.cancel?.() !== false) {
         closeDialog();
       }
     };
@@ -74,7 +78,7 @@ export default {
 };
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 $radius: 4px;
 $border-color: #d9d9d9;
 .k-dialog {

@@ -11,11 +11,17 @@
         </div>
         <div class="demo-code-control" @click="showCode">
           <svg>
-            <use xlink:href="#icon-xiajiantou"></use>
+            <use
+              :xlink:href="
+                codeVisible === true
+                  ? '#icon-xiangshangjiantou'
+                  : '#icon-xiangxiajiantou'
+              "
+            ></use>
           </svg>
           <transition name="fade">
             <span class="demo-code-show" v-show="show">{{
-                codeVisible === true ? "隐藏代码" : "显示代码"
+              codeVisible === true ? "隐藏代码" : "显示代码"
             }}</span>
           </transition>
         </div>
@@ -40,7 +46,6 @@ export default {
   setup(props) {
     const codeBlock = ref(null);
     nextTick(() => {
-      console.log(codeBlock.value);
     });
     const show = ref(false);
     const height = ref(0);
@@ -60,7 +65,6 @@ export default {
     const showCode = () => {
       if (height.value === 0) {
         height.value = codeBlock.value.offsetHeight;
-        console.log(height);
       } else {
         height.value = 0;
       }
@@ -89,9 +93,9 @@ $border-color: #d9d9d9;
 .demo {
   border: 1px solid $border-color;
   margin: 16px 0 32px;
-  width: 60%;
+  width: 80%;
 
-  >h2 {
+  > h2 {
     font-size: 20px;
     padding: 8px 16px;
     border-bottom: 1px solid $border-color;
@@ -113,7 +117,7 @@ $border-color: #d9d9d9;
       overflow-y: hidden;
       overflow-x: auto;
 
-      >pre {
+      > pre {
         padding: 10px 16px;
         line-height: 1.1;
         font-family: Consolas, "Courier New", Courier, monospace;

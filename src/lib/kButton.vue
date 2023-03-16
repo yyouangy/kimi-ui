@@ -40,6 +40,7 @@ $border-color: #d9d9d9;
 $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
+
 .k-button {
   font-size: 14px;
   box-sizing: border-box;
@@ -55,17 +56,21 @@ $radius: 4px;
   border: 1px solid $border-color;
   border-radius: $radius;
   box-shadow: 0 1px 0 fade-out(black, 0.95);
-  & + & {
+
+  &+& {
     margin-left: 8px;
   }
+
   &:hover,
   &:focus {
     color: $blue;
     border-color: $blue;
   }
+
   &:focus {
     outline: none;
   }
+
   &::-moz-focus-inner {
     border: 0;
   }
@@ -75,42 +80,49 @@ $radius: 4px;
     border-color: transparent;
     box-shadow: none;
     color: #fff;
-    background-color: #084696;
+    background-color: #2080f0;
+
     &:hover,
     &:focus {
       // color: lighten($blue, 5%);
-      background-color: lighten(#084696, 5%);
+      background-color: #4098fc;
     }
   }
+
   &.k-theme-success {
     border-color: transparent;
     box-shadow: none;
     color: #fff;
-    background-color: rgb(43, 131, 21);
+    // background-color: rgb(43, 131, 21);
+    background-color: #18a058;
+
     &:hover,
     &:focus {
-      background-color: lighten(rgb(43, 131, 21), 5%);
+      background-color: #36ad6a;
     }
   }
+
   &.k-theme-warning {
     border-color: transparent;
     box-shadow: none;
     color: #fff;
-    background-color: rgb(162, 175, 39);
+    background-color: #f0a020;
+
     &:hover,
     &:focus {
-      background-color: lighten(rgb(162, 175, 39), 5%);
+      background-color: #fcb040;
     }
   }
+
   &.k-theme-danger {
     border-color: transparent;
     box-shadow: none;
     color: #fff;
-    background-color: rgb(131, 56, 21);
+    background-color: #d03050;
 
     &:hover,
     &:focus {
-      background-color: lighten(rgb(131, 56, 21), 5%);
+      background-color: #de576d;
     }
   }
 
@@ -119,11 +131,13 @@ $radius: 4px;
     height: $h + 6px;
     font-size: 18px;
   }
+
   &.k-size-small {
     height: $h - 6px;
     font-size: 12px;
   }
-  > .k-loadingIndicator {
+
+  >.k-loadingIndicator {
     width: 14px;
     height: 14px;
     display: inline-block;
@@ -134,15 +148,18 @@ $radius: 4px;
     border-width: 2px;
     animation: spin 1s infinite linear;
   }
+
   @keyframes spin {
     0% {
       transform: rotate(0deg);
     }
+
     100% {
       transform: rotate(360deg);
     }
   }
 }
+
 // .k-size-big{
 //   height: $h + 6px;
 //   font-size: 18px;

@@ -1,20 +1,20 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 ul,
 ol {
-    list-style: none;
+  list-style: none;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
-    &:hover {
-        cursor: pointer;
-    }
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 h1,
@@ -23,20 +23,40 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: normal;
+  font-weight: normal;
 }
 
+html,
 body {
-    font-size: 16px;
-    line-height: 1.5;
-    color: #1d2c40;
-    font-family: -apple-system, "Noto Sans", "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+  height: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: -apple-system, "Noto Sans", "Helvetica Neue", Helvetica,
+    "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB",
+    "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN",
+    "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti",
+    SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+  --bg-color: #fff;
+  --banner-start-color: rgba(227, 255, 253, 1);
+  --banner-end-color: rgba(183, 233, 230, 1);
+  --font-color: #1d2c40;
 }
-
-.icon {
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
+.dark {
+  --bg-color: rgb(2, 37, 59);
+  --banner-start-color: rgb(158, 193, 207);
+  --banner-end-color: rgb(8, 111, 140);
+  --font-color: #f1eaea;
+}
+body {
+  background: var(--bg-color);
+  color: var(--font-color);
+}
+.topAndBanner {
+  color: var(--font-color);
+  background: linear-gradient(
+    145deg,
+    var(--banner-start-color) 0%,
+    var(--banner-end-color) 100%
+  );
+  clip-path: ellipse(80% 60% at 50% 40%);
 }

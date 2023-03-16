@@ -2,25 +2,27 @@
   <div class="topnav">
     <router-link to="/" class="logo">
       <svg>
-        <use xlink:href="#icon-ziyuan"></use>
+        <use xlink:href="#icon-16gl-K"></use>
       </svg>
     </router-link>
     <ul class="menu">
       <li>
-        <!-- <router-link to="/doc">文档</router-link> -->
+        <k-switch v-model:value="opened" @click="switchMode">
+          <template v-slot:openIcon>
+            <k-icon name="icon-moon"></k-icon>
+          </template>
+          <template v-slot:closeIcon>
+            <k-icon name="icon-sun"></k-icon>
+          </template>
+        </k-switch>
+      </li>
+      <li>
         <a href="https://github.com/yyouangy/kimi-ui">
           <svg>
-            <use xlink:href="#icon-GitHub"></use></svg
-        ></a>
+            <use xlink:href="#icon-GitHub"></use>
+          </svg></a>
       </li>
     </ul>
-    <!-- <img
-      v-if="toggleBut tonVisible"
-      @click="toggleAside"
-      src="../assets/category.png"
-      class="category"
-      alt=""
-    /> -->
     <svg v-if="toggleButtonVisible" class="category" @click="toggleAside">
       <use xlink:href="#icon-menu"></use>
     </svg>
@@ -28,7 +30,7 @@
 </template>
 
 <script lang='ts'>
-import { inject, Ref } from "vue";
+import { inject, Ref, ref } from "vue";
 export default {
   props: {
     toggleButtonVisible: {
@@ -41,7 +43,18 @@ export default {
     const toggleAside = () => {
       asideVisible.value = !asideVisible.value;
     };
-    return { toggleAside };
+    const switchMode = () => {
+      const isDark = document.body.classList.contains("dark");
+      if (isDark) {
+        document.body.classList.remove("dark");
+        localStorage.removeItem("dark");
+      } else {
+        document.body.classList.add("dark");
+        localStorage.setItem("dark", "1");
+      }
+    };
+    const opened = ref(false);
+    return { toggleAside, opened, switchMode };
   },
 };
 </script>
@@ -59,39 +72,35 @@ export default {
   justify-content: center;
   align-items: center;
   z-index: 20;
-  // background: #fff;
   box-shadow: 0 5px 5px rgb(51 51 51 / 10%);
-  // display: flex;
-  // padding: 16px;
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // width: 100%;
-  // z-index: 20;
-  // justify-content: center;
-  // align-items: center;
+
   > .logo {
     max-width: 6em;
     margin-right: auto;
+
     > svg {
       height: 40px;
       width: 50px;
     }
   }
+
   > .menu {
     display: flex;
     white-space: nowrap;
+    align-items: center;
     > li {
       margin: 0 1em;
+
       > a {
         > svg {
-          height: 30px;
-          width: 30px;
+          height: 25px;
+          width: 25px;
           cursor: pointer;
         }
       }
     }
   }
+
   .category {
     position: absolute;
     left: 16px;
@@ -100,13 +109,16 @@ export default {
     height: 36px;
     display: none;
   }
+
   @media (max-width: 500px) {
     > .menu {
       display: none;
     }
+
     > .logo {
       margin: 0 auto;
     }
+
     .category {
       display: block;
     }

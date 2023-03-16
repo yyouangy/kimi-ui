@@ -2,20 +2,16 @@
 常规用法
 </demo>
 <template>
-  <k-switch v-model:value="bool" />
+  <k-switch v-model:value="opened" />
 </template>
 
 <script lang="ts">
-import kSwitch from "../../../lib/kSwitch.vue";
 import { ref } from "vue";
 export default {
-  components: {
-    kSwitch,
-  },
   setup() {
-    const bool = ref(true);
+    const opened = ref(true);
     return {
-      bool,
+      opened,
     };
   },
 };

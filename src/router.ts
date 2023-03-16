@@ -5,6 +5,8 @@ import SwitchDemo from "./components/SwitchPage/SwitchDemo.vue";
 import ButtonDemo from "./components/ButtonPage/ButtonDemo.vue";
 import DialogDemo from "./components/DialogPage/DialogDemo.vue";
 import TabsDemo from "./components/TabsPage/TabsDemo.vue";
+import TreeDemo from "./components/TreePage/TreeDemo.vue";
+import IconDemo from "./components/IconPage/IconDemo.vue"
 import CollapseDemo from "./components/CollapsePage/CollapseDemo.vue";
 import PaginationDemo from "./components/PaginationPage/PaginationDemo.vue";
 import Unfinished from "./components/Unfinished.vue";
@@ -34,8 +36,10 @@ export const router = createRouter({
         { path: "button", component: ButtonDemo },
         { path: "dialog", component: DialogDemo },
         { path: "tabs", component: TabsDemo },
-        { path: "collapse", component: CollapseDemo },
-        { path: "pagination", component: PaginationDemo },
+        { path: "tree", component: TreeDemo },
+         { path: "icon", component: IconDemo },
+        // { path: "collapse", component: CollapseDemo },
+        // { path: "pagination", component: PaginationDemo },
         { path: "continue", component: Unfinished },
       ],
     },

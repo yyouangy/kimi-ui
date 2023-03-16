@@ -3,7 +3,7 @@
     <Topnav toggleButtonVisible class="nav" />
     <div class="content">
       <aside v-if="asideVisible">
-        <h2>文档</h2>
+        <h3>文档</h3>
         <ol>
           <li>
             <router-link to="/doc/intro">介绍</router-link>
@@ -22,7 +22,7 @@
           </li>
         </ol>
 
-        <h2>组件列表</h2>
+        <h3>组件</h3>
         <ol>
           <li>
             <router-link to="/doc/switch">Switch 组件</router-link>
@@ -31,17 +31,23 @@
             <router-link to="/doc/button">Button 组件</router-link>
           </li>
           <li>
+            <router-link to="/doc/icon">Icon 组件</router-link>
+          </li>
+          <li>
             <router-link to="/doc/dialog">Dialog 组件</router-link>
           </li>
           <li>
             <router-link to="/doc/tabs">Tabs 组件</router-link>
           </li>
           <li>
+            <router-link to="/doc/tree">Tree 组件</router-link>
+          </li>
+          <!-- <li>
             <router-link to="/doc/collapse">Collapse 组件</router-link>
           </li>
-           <li>
+          <li>
             <router-link to="/doc/pagination">Pagination 组件</router-link>
-          </li>
+          </li> -->
           <li>
             <router-link to="/doc/continue">未完待续...</router-link>
           </li>
@@ -69,7 +75,8 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  > .nav {
+
+  >.nav {
     flex-shrink: 0;
     background-color: #fff;
     box-shadow: 0 5px 5px rgb(51 51 51 / 10%);
@@ -80,26 +87,32 @@ export default {
     justify-content: center;
     align-items: center;
   }
-  > .content {
+
+  >.content {
     flex-grow: 1;
     padding-top: 80px;
     padding-left: 236px;
+
     @media (max-width: 500px) {
       padding-left: 0;
     }
   }
 }
+
 .content {
   display: flex;
-  > aside {
+
+  >aside {
     flex-shrink: 0;
   }
-  > main {
+
+  >main {
     flex-grow: 1;
-    padding: 16px;
-    background: rgb(230, 236, 230);
+    padding: 50px 0 0 60px;
+    background-color: #fff;
   }
 }
+
 aside {
   position: absolute;
   top: 0;
@@ -111,27 +124,34 @@ aside {
   box-shadow: 5px 0 5px rgb(51 51 51 / 10%);
   z-index: 1;
   transition: 0.4s cubic-bezier(0.68, 0.18, 0.53, 0.18) 0.1s;
-  > h2 {
-    margin-bottom: 4px;
-    padding: 10px 30px 0;
+
+  >h3 {
+    font-weight: 800;
+    padding: 10px 30px 20px;
   }
-  > ol {
-    > li {
-      padding: 0 0 5px 0;
-      > a {
+
+  >ol {
+    >li {
+      padding: 0 0 10px 0;
+
+      >a {
         position: relative;
         height: 40px;
-        color: #6f2e6a;
+        color: #555;
         display: block;
         padding: 0 50px;
         line-height: 40px;
+
         &:hover,
         &:focus {
           background-color: #f4faf5;
+          color: #78ccac;
         }
       }
+
       .router-link-active {
         background-color: #f4faf5;
+
         &::after {
           content: "";
           display: block;
@@ -146,15 +166,18 @@ aside {
       }
     }
   }
+
   @keyframes bdrolate {
     0% {
       transform: rotateX(90deg);
     }
+
     100% {
       transform: rotateX(0deg);
     }
   }
 }
+
 main {
   overflow: auto;
 }

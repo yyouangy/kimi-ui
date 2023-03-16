@@ -3,6 +3,7 @@
     <h1>Dialog 组件示例</h1>
       <Demo :component="DialogNormal" />
       <Demo :component="DialogOpen" />
+      
   </div>
 </template>
 

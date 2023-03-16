@@ -10,15 +10,9 @@
   </k-tabs>
 </template>
 
-<script lang='ts'>
-import kTabs from "../../../lib/kTabs.vue";
-import kTab from "../../../lib/kTab.vue";
+<script lang="ts">
 import { ref } from "vue";
 export default {
-  components: {
-    kTabs,
-    kTab,
-  },
   setup() {
     const initSelected = ref("学习");
     return { initSelected };

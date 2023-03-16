@@ -6,12 +6,8 @@
 </template>
 
 <script lang="ts">
-import kSwitch from "../../../lib/kSwitch.vue";
 import { ref } from "vue";
 export default {
-  components: {
-    kSwitch,
-  },
   setup() {
     const bool = ref(false);
     return {

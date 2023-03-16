@@ -1,20 +1,17 @@
 <template>
   <div>
-    <button
-      class="k-switch"
-      :class="{ 'k-checked': value }"
-      @click="toggle"
-      :disabled="disabled"
-    >
-      <span></span>
-      <p v-if="value" class="kaite-switch-on">on</p>
-      <p v-else class="kaite-switch-off">off</p>
+    <button class="k-switch" :class="{ 'k-checked': value }" @click="toggle" :disabled="disabled">
+      <span>
+        <slot :name="value ? 'openIcon' : 'closeIcon'"></slot>
+      </span>
+      <!-- <p v-if="value"></p>
+      <p v-else></p> -->
     </button>
   </div>
 </template>
 
-<script lang='ts'>
-import { computed, ref } from "vue";
+<script lang="ts">
+// import { computed, ref } from "vue";
 export default {
   props: {
     value: Boolean,
@@ -27,16 +24,13 @@ export default {
     const toggle = () => {
       context.emit("update:value", !props.value);
     };
-    // const switchState = computed(() => {
-    //   return props.value ? "on" : "off";
-    // });
 
     return { toggle };
   },
 };
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 $h: 22px;
 $h2: $h - 4px;
 .k-switch {
@@ -76,6 +70,17 @@ $h2: $h - 4px;
     background-color: #fff;
     transition: all 0.25s ease-in-out;
     display: inline-block;
+    .k-icon {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
   > p {
     width: 14px;
