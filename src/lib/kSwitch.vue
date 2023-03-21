@@ -4,14 +4,11 @@
       <span>
         <slot :name="value ? 'openIcon' : 'closeIcon'"></slot>
       </span>
-      <!-- <p v-if="value"></p>
-      <p v-else></p> -->
     </button>
   </div>
 </template>
 
 <script lang="ts">
-// import { computed, ref } from "vue";
 export default {
   props: {
     value: Boolean,
@@ -22,6 +19,7 @@ export default {
   },
   setup(props, context) {
     const toggle = () => {
+      if (props.disabled) return;
       context.emit("update:value", !props.value);
     };
 
@@ -43,7 +41,7 @@ $h2: $h - 4px;
   border: none;
   padding: 0;
   margin-bottom: 8px;
-  background-color: #bfbfbf; //#1890ff
+  background-color: #bfbfbf;
   border-radius: $h/2;
   outline: none;
   cursor: pointer;

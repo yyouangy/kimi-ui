@@ -30,8 +30,6 @@ export default {
     let box = ref(null);
     let height = ref(0);
     const toggle = () => {
-      // console.log(props.title, props.name);
-
       if (height.value === 0) {
         height.value = box.value.offsetHeight;
       } else {

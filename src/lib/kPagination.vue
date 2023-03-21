@@ -38,7 +38,6 @@ export default {
     // 总页数
     const pages = computed(() => Math.ceil(props.total / props.pagesize));
     // 当前页码
-    // console.log(attrs.page)
     const currentPage = ref(attrs.currentPage || 1);
     // 动态计算页码列表
     const list = computed(() => {

@@ -41,9 +41,6 @@ export default {
     align-items: center;
     cursor: pointer;
     font-size: 18px;
-    &:hover {
-      background-color: rgba(1, 1, 1, 0.1);
-    }
   }
   svg {
     margin-right: 10px;

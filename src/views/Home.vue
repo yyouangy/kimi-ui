@@ -47,6 +47,13 @@ export default {
 <style lang="scss" scoped>
 $green: #02bcb0;
 .topAndBanner {
+  color: var(--font-color);
+  background: linear-gradient(
+    145deg,
+    var(--banner-start-color) 0%,
+    var(--banner-end-color) 100%
+  );
+  clip-path: ellipse(80% 60% at 50% 40%);
   .banner {
     padding: 100px 0;
     display: flex;

@@ -20,7 +20,6 @@ export default {
     watch(
       () => props.dataSource,
       (newValue, oldValue) => {
-        console.log("sum变了", newValue, oldValue);
       },
       { immediate: true }
     );

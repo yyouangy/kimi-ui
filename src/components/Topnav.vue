@@ -7,7 +7,7 @@
     </router-link>
     <ul class="menu">
       <li>
-        <k-switch v-model:value="opened" @click="switchMode">
+        <k-switch v-model:value="isDark">
           <template v-slot:openIcon>
             <k-icon name="icon-moon"></k-icon>
           </template>
@@ -30,7 +30,7 @@
 </template>
 
 <script lang='ts'>
-import { inject, Ref, ref } from "vue";
+import { inject, Ref, ref, watch } from "vue";
 export default {
   props: {
     toggleButtonVisible: {
@@ -39,45 +39,43 @@ export default {
     },
   },
   setup() {
-    const asideVisible = inject<Ref<boolean>>("asideVisible"); // get
+    const asideVisible = inject<Ref<boolean>>("asideVisible"); 
+    const isDark = ref(document.body.classList.contains("dark"));
     const toggleAside = () => {
       asideVisible.value = !asideVisible.value;
     };
-    const switchMode = () => {
-      const isDark = document.body.classList.contains("dark");
-      if (isDark) {
-        document.body.classList.remove("dark");
-        localStorage.removeItem("dark");
-      } else {
+    watch(isDark, (value) => {
+      if (value) {
         document.body.classList.add("dark");
         localStorage.setItem("dark", "1");
+      } else {
+        document.body.classList.remove("dark");
+        localStorage.removeItem("dark");
       }
-    };
-    const opened = ref(false);
-    return { toggleAside, opened, switchMode };
+    });
+    return { toggleAside, isDark };
   },
 };
 </script>
 
 <style lang='scss' scoped>
 .topnav {
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
+  height: 65px;
   color: #05538c;
   display: flex;
   padding: 14px;
   justify-content: center;
   align-items: center;
-  z-index: 20;
-  box-shadow: 0 5px 5px rgb(51 51 51 / 10%);
-
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
   > .logo {
     max-width: 6em;
     margin-right: auto;
-
     > svg {
       height: 40px;
       width: 50px;
@@ -95,7 +93,7 @@ export default {
         > svg {
           height: 25px;
           width: 25px;
-          cursor: pointer;
+          filter: var(--svg-filter);
         }
       }
     }

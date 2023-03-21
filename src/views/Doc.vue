@@ -74,24 +74,17 @@ export default {
 .layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-
-  >.nav {
-    flex-shrink: 0;
-    background-color: #fff;
-    box-shadow: 0 5px 5px rgb(51 51 51 / 10%);
-    display: flex;
-    padding: 16px;
-    z-index: 10;
-    color: #6f2e6a;
-    justify-content: center;
-    align-items: center;
+  height: 100%;
+  background-color: var(--doc-bg-color);
+  color: var(--font-color);
+  .nav{
+    background-color: var(--navbar-color);
   }
-
-  >.content {
+  > .content {
     flex-grow: 1;
-    padding-top: 80px;
+    margin-top: 65px;
     padding-left: 236px;
+    z-index: 1;
 
     @media (max-width: 500px) {
       padding-left: 0;
@@ -101,56 +94,49 @@ export default {
 
 .content {
   display: flex;
-
-  >aside {
+  padding-top: 30px;
+  > aside {
     flex-shrink: 0;
   }
 
-  >main {
+  > main {
     flex-grow: 1;
-    padding: 50px 0 0 60px;
-    background-color: #fff;
+    padding-left: 50px;
   }
 }
 
 aside {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 65px;
   left: 0;
   width: 235px;
-  height: 110vh;
-  padding: 80px 0 16px;
-  background: #fff;
-  box-shadow: 5px 0 5px rgb(51 51 51 / 10%);
-  z-index: 1;
+  height: 100vh;
+  box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
   transition: 0.4s cubic-bezier(0.68, 0.18, 0.53, 0.18) 0.1s;
-
-  >h3 {
+  > h3 {
     font-weight: 800;
     padding: 10px 30px 20px;
   }
 
-  >ol {
-    >li {
+  > ol {
+    > li {
       padding: 0 0 10px 0;
 
-      >a {
+      > a {
         position: relative;
         height: 40px;
-        color: #555;
         display: block;
         padding: 0 50px;
         line-height: 40px;
 
         &:hover,
         &:focus {
-          background-color: #f4faf5;
-          color: #78ccac;
+          background-color: var(--aside-bg-color);
         }
       }
 
       .router-link-active {
-        background-color: #f4faf5;
+        background-color: var(--aside-bg-color);
 
         &::after {
           content: "";
@@ -159,9 +145,9 @@ aside {
           position: absolute;
           top: 0;
           right: 0;
-          width: 3px;
+          width: 5px;
           height: 40px;
-          background-color: #78ccac;
+          background-color: var(--aside-color);
         }
       }
     }
@@ -176,9 +162,5 @@ aside {
       transform: rotateX(0deg);
     }
   }
-}
-
-main {
-  overflow: auto;
 }
 </style>

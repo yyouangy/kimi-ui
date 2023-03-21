@@ -3,7 +3,6 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
 export default {
   props: {
     content: {
@@ -11,6 +10,14 @@ export default {
       required: true,
     },
   },
-  
 };
 </script>
+
+<style lang='scss' scoped>
+.markdown-body {
+  color: var(--font-color);
+  :deep(> pre) {
+    background-color: var(--navbar-color);
+  }
+}
+</style>

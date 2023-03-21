@@ -45,14 +45,11 @@ export default {
     const toggle = (data) => {};
     const setActive = () => {
       const activeKey = getActiveKey();
-      console.log(activeKey);
-
       // const defaults = context.slots.default();
       // defaults.forEach((child, index) => {
       //   const name = child.props.name || index;
       //   child.isActive = activeKey.includes(name);
       // });
-      // console.log(defaults);
     };
     onMounted(() => {
       setActive();

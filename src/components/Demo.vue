@@ -11,13 +11,11 @@
         </div>
         <div class="demo-code-control" @click="showCode">
           <svg>
-            <use
-              :xlink:href="
+            <use :xlink:href="
                 codeVisible === true
                   ? '#icon-xiangshangjiantou'
                   : '#icon-xiangxiajiantou'
-              "
-            ></use>
+              "></use>
           </svg>
           <transition name="fade">
             <span class="demo-code-show" v-show="show">{{
@@ -45,8 +43,7 @@ export default {
   },
   setup(props) {
     const codeBlock = ref(null);
-    nextTick(() => {
-    });
+    nextTick(() => {});
     const show = ref(false);
     const height = ref(0);
     const html = computed(() => {
@@ -113,15 +110,16 @@ $border-color: #d9d9d9;
     &-content {
       transition: height 0.25s;
       height: 0;
-      background-color: #fafafa;
       overflow-y: hidden;
       overflow-x: auto;
-
       > pre {
         padding: 10px 16px;
-        line-height: 1.1;
+        line-height: 1.3;
         font-family: Consolas, "Courier New", Courier, monospace;
         margin: 0;
+        :deep(.token) {
+          background-color: inherit;
+        }
       }
     }
 
@@ -131,14 +129,8 @@ $border-color: #d9d9d9;
       height: 44px;
       line-height: 44px;
       position: relative;
-      color: #d3dce6;
-
       &:hover {
-        color: #00b894;
-        background-color: #f1ffff;
-        box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
-          0 2px 4px 0 rgba(232, 237, 250, 0.5);
-
+        background-color: var(--aside-bg-color);
         svg {
           transform: translateX(-35px);
         }
