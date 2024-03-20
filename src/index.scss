@@ -1,20 +1,20 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 ul,
 ol {
-  list-style: none;
+    list-style: none;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
-  &:hover {
-    cursor: pointer;
-  }
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 h1,
@@ -23,58 +23,59 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: normal;
+    font-weight: normal;
 }
+
 ::-webkit-scrollbar {
-  /*滚动条整体样式*/
-  width: 7px; /*高宽分别对应横竖滚动条的尺寸*/
-  height: 1px;
+    /*滚动条整体样式*/
+    width: 7px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
 }
+
 ::-webkit-scrollbar-thumb {
-  /*滚动条里面小方块*/
-  border-radius: 10px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  background: #535353;
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #535353;
 }
+
 ::-webkit-scrollbar-track {
-  /*滚动条里面轨道*/
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  background: #ededed;
+    /*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: #ededed;
 }
+
 html,
 body {
-  height: 100%;
-  font-size: 16px;
-  // overflow: hidden;
-  font-family: -apple-system, "Noto Sans", "Helvetica Neue", Helvetica,
-    "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB",
-    "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN",
-    "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti",
-    SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
-  --bg-color: #fff;
-  --banner-start-color: rgba(227, 255, 253, 1);
-  --banner-end-color: rgba(183, 233, 230, 1);
-  --font-color: #1d2c40;
-  --doc-bg-color: #fff;
-  --aside-bg-color: #f4faf5;
-  --aside-color: #78ccac;
-  --svg-filter: invert(0);
-  --navbar-color: #fafbfd;
-
-  background: var(--doc-bg-color);
-  color: var(--font-color);
+    height: 100%;
+    font-size: 16px;
+    // overflow: hidden;
+    font-family: -apple-system, "Noto Sans", "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+    --bg-color: #fff;
+    --banner-start-color: rgba(227, 255, 253, 1);
+    --banner-end-color: rgba(183, 233, 230, 1);
+    --font-color: #1d2c40;
+    --doc-bg-color: #fff;
+    --aside-bg-color: #f4faf5;
+    --aside-color: #78ccac;
+    --svg-filter: invert(0);
+    --navbar-color: #fafbfd;
+    background: var(--doc-bg-color);
+    // color: var(--font-color);
 }
+
 .dark {
-  --bg-color: rgb(2, 37, 59);
-  --banner-start-color: rgb(158, 193, 207);
-  --banner-end-color: rgb(8, 111, 140);
-  --font-color: #f1eaea;
-  --doc-bg-color: rgb(36, 36, 36);
-  --aside-color: #c2e2ef;
-  --aside-bg-color: rgb(0, 119, 192);
-  --svg-filter: invert(1);
-  --navbar-color: rgb(35, 36, 36);
+    --bg-color: rgb(2, 37, 59);
+    --banner-start-color: rgb(158, 193, 207);
+    --banner-end-color: rgb(8, 111, 140);
+    --font-color: #f1eaea;
+    --doc-bg-color: rgb(36, 36, 36);
+    --aside-color: #c2e2ef;
+    --aside-bg-color: rgb(0, 119, 192);
+    --svg-filter: invert(1);
+    --navbar-color: rgb(35, 36, 36);
 }
 
 // body {

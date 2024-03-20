@@ -1,9 +1,8 @@
 <demo>
-一句话打开Dialog
+一键打开Dialog
 </demo>
 <template>
-  <k-button @click="showDialogDirectly">一句话打开Dialog</k-button>
-  <k-dialog></k-dialog>
+  <k-button @click="showDialogDirectly">一键打开Dialog</k-button>
 </template>
 
 <script>
@@ -15,21 +14,15 @@ export default {
     const showDialog = () => {
       visibleDialog.value = true;
     };
-    const f1 = () => {
-      return true;
-    };
-    const f2 = () => {
-      return false;
-    };
     const showDialogDirectly = () => {
       openDialog({
-        title: "提示",
+        title: "标题",
         content: "内容",
-        ok: () => {},
-        cancel: () => {},
+        ok: () => { return true },
+        cancel: () => { return false },
       });
     };
-    return { visibleDialog, showDialog, f1, f2, showDialogDirectly };
+    return { visibleDialog, showDialog, showDialogDirectly };
   },
 };
 </script>

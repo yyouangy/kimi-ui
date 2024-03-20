@@ -94,6 +94,7 @@ $green: #02bcb0;
   }
 }
 .features {
+  color: var(--font-color);
   margin: 64px auto;
   @media (min-width: 800px) {
     width: 800px;
@@ -113,6 +114,7 @@ $green: #02bcb0;
   }
   > ul {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     > li {
       margin: 16px 0;

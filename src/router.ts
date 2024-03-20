@@ -6,9 +6,11 @@ import ButtonDemo from "./components/ButtonPage/ButtonDemo.vue";
 import DialogDemo from "./components/DialogPage/DialogDemo.vue";
 import TabsDemo from "./components/TabsPage/TabsDemo.vue";
 import TreeDemo from "./components/TreePage/TreeDemo.vue";
-import IconDemo from "./components/IconPage/IconDemo.vue"
+import IconDemo from "./components/IconPage/IconDemo.vue";
 import CollapseDemo from "./components/CollapsePage/CollapseDemo.vue";
 import PaginationDemo from "./components/PaginationPage/PaginationDemo.vue";
+import CheckboxDemo from "./components/CheckboxPage/CheckboxDemo.vue";
+
 import Unfinished from "./components/Unfinished.vue";
 import { h } from "vue";
 import Markdown from "./components/Markdown.vue";
@@ -37,7 +39,8 @@ export const router = createRouter({
         { path: "dialog", component: DialogDemo },
         { path: "tabs", component: TabsDemo },
         { path: "tree", component: TreeDemo },
-         { path: "icon", component: IconDemo },
+        { path: "icon", component: IconDemo },
+        { path: "checkbox", component: CheckboxDemo },
         // { path: "collapse", component: CollapseDemo },
         // { path: "pagination", component: PaginationDemo },
         { path: "continue", component: Unfinished },

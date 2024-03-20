@@ -3,14 +3,9 @@
 </demo>
 <template>
   <k-button @click="showDialog">打开Dialog</k-button>
-  <k-dialog
-    v-model:visible="visibleDialog"
-    :closeByClickMask="true"
-    :ok="fn1"
-    :cancel="fn2"
-  >
+  <k-dialog v-model:visible="visibleDialog" :closeByClickMask="true" :ok="fn1" :cancel="fn2">
     <template v-slot:title>
-      <strong>提示</strong>
+      <strong>标题</strong>
     </template>
     <template v-slot:content>
       <strong>这是第1条内容</strong>

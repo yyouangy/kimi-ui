@@ -11,16 +11,15 @@
         </div>
         <div class="demo-code-control" @click="showCode">
           <svg>
-            <use :xlink:href="
-                codeVisible === true
-                  ? '#icon-xiangshangjiantou'
-                  : '#icon-xiangxiajiantou'
-              "></use>
+            <use :xlink:href="codeVisible === true
+        ? '#icon-xiangshangjiantou'
+        : '#icon-xiangxiajiantou'
+      "></use>
           </svg>
           <transition name="fade">
             <span class="demo-code-show" v-show="show">{{
-              codeVisible === true ? "隐藏代码" : "显示代码"
-            }}</span>
+      codeVisible === true ? "隐藏代码" : "显示代码"
+    }}</span>
           </transition>
         </div>
       </div>
@@ -33,7 +32,7 @@ import kButton from "../lib/kButton.vue";
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 import "prismjs/themes/prism-solarizedlight.css";
-import { computed, ref, onMounted, nextTick } from "vue";
+import { computed, ref, onMounted, } from "vue";
 export default {
   components: {
     kButton,
@@ -43,7 +42,6 @@ export default {
   },
   setup(props) {
     const codeBlock = ref(null);
-    nextTick(() => {});
     const show = ref(false);
     const height = ref(0);
     const html = computed(() => {
@@ -92,7 +90,7 @@ $border-color: #d9d9d9;
   margin: 16px 0 32px;
   width: 80%;
 
-  > h2 {
+  >h2 {
     font-size: 20px;
     padding: 8px 16px;
     border-bottom: 1px solid $border-color;
@@ -112,11 +110,13 @@ $border-color: #d9d9d9;
       height: 0;
       overflow-y: hidden;
       overflow-x: auto;
-      > pre {
+
+      >pre {
         padding: 10px 16px;
         line-height: 1.3;
         font-family: Consolas, "Courier New", Courier, monospace;
         margin: 0;
+
         :deep(.token) {
           background-color: inherit;
         }
@@ -129,8 +129,10 @@ $border-color: #d9d9d9;
       height: 44px;
       line-height: 44px;
       position: relative;
+
       &:hover {
         background-color: var(--aside-bg-color);
+
         svg {
           transform: translateX(-35px);
         }

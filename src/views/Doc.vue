@@ -2,7 +2,7 @@
   <div class="layout">
     <Topnav toggleButtonVisible class="nav" />
     <div class="content">
-      <aside v-if="asideVisible">
+      <aside v-if="asideVisible" :class="asideVisible ? 'aside-animation' : ''">
         <h3>文档</h3>
         <ol>
           <li>
@@ -22,7 +22,7 @@
           </li>
         </ol>
 
-        <h3>组件</h3>
+        <h3>Basic 基础组件</h3>
         <ol>
           <li>
             <router-link to="/doc/switch">Switch 组件</router-link>
@@ -33,6 +33,10 @@
           <li>
             <router-link to="/doc/icon">Icon 组件</router-link>
           </li>
+        </ol>
+
+        <h3>Form 表单组件</h3>
+        <ol>
           <li>
             <router-link to="/doc/dialog">Dialog 组件</router-link>
           </li>
@@ -42,12 +46,9 @@
           <li>
             <router-link to="/doc/tree">Tree 组件</router-link>
           </li>
-          <!-- <li>
-            <router-link to="/doc/collapse">Collapse 组件</router-link>
-          </li>
           <li>
-            <router-link to="/doc/pagination">Pagination 组件</router-link>
-          </li> -->
+            <router-link to="/doc/checkbox">Checkbox 组件</router-link>
+          </li>
           <li>
             <router-link to="/doc/continue">未完待续...</router-link>
           </li>
@@ -77,15 +78,16 @@ export default {
   height: 100%;
   background-color: var(--doc-bg-color);
   color: var(--font-color);
-  .nav{
+
+  .nav {
     background-color: var(--navbar-color);
   }
+
   > .content {
     flex-grow: 1;
     margin-top: 65px;
     padding-left: 236px;
     z-index: 1;
-
     @media (max-width: 500px) {
       padding-left: 0;
     }
@@ -95,24 +97,33 @@ export default {
 .content {
   display: flex;
   padding-top: 30px;
+
   > aside {
     flex-shrink: 0;
   }
 
   > main {
     flex-grow: 1;
-    padding-left: 50px;
+    padding: 0 25px;
   }
 }
 
 aside {
   position: fixed;
+  z-index: 11111;
   top: 65px;
   left: 0;
-  width: 235px;
+  width: 80%;
+  visibility: 0;
+  opacity: 0.5;
   height: 100vh;
   box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
-  transition: 0.4s cubic-bezier(0.68, 0.18, 0.53, 0.18) 0.1s;
+  // transition: 0.4s cubic-bezier(0.68, 0.18, 0.53, 0.18) 0.1s;
+  background-color: #fff;
+  // transition: width 1.5s ease 1.5s;
+
+  transition: width 1.2s ease-out, opacity 1.2s ease-in, visibility 1.2s ease-in;
+
   > h3 {
     font-weight: 800;
     padding: 10px 30px 20px;
@@ -162,5 +173,10 @@ aside {
       transform: rotateX(0deg);
     }
   }
+}
+.side-animation {
+  opacity: 1;
+  visibility: 1;
+  width: 80%;
 }
 </style>

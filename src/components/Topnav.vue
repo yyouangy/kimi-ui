@@ -109,7 +109,7 @@ export default {
   }
 
   @media (max-width: 500px) {
-    > .menu {
+    > .menu  li:nth-child(2)  {
       display: none;
     }
 
