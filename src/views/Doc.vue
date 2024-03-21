@@ -2,7 +2,7 @@
   <div class="layout">
     <Topnav toggleButtonVisible class="nav" />
     <div class="content">
-      <aside v-if="asideVisible" :class="asideVisible ? 'aside-animation' : ''">
+      <aside v-if="asideVisible">
         <h3>文档</h3>
         <ol>
           <li>
@@ -97,6 +97,7 @@ export default {
 .content {
   display: flex;
   padding-top: 30px;
+  height:100%; 
 
   > aside {
     flex-shrink: 0;
@@ -113,17 +114,10 @@ aside {
   z-index: 11111;
   top: 65px;
   left: 0;
-  width: 80%;
-  visibility: 0;
-  opacity: 0.5;
-  height: 100vh;
+  width: 235px;
+  height:90%; 
   box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
-  // transition: 0.4s cubic-bezier(0.68, 0.18, 0.53, 0.18) 0.1s;
-  background-color: #fff;
-  // transition: width 1.5s ease 1.5s;
-
-  transition: width 1.2s ease-out, opacity 1.2s ease-in, visibility 1.2s ease-in;
-
+  overflow-y: auto;
   > h3 {
     font-weight: 800;
     padding: 10px 30px 20px;
@@ -135,10 +129,10 @@ aside {
 
       > a {
         position: relative;
-        height: 40px;
+        height: 6vh;
         display: block;
         padding: 0 50px;
-        line-height: 40px;
+        line-height: 6vh;
 
         &:hover,
         &:focus {
@@ -157,7 +151,7 @@ aside {
           top: 0;
           right: 0;
           width: 5px;
-          height: 40px;
+          height: 6vh;
           background-color: var(--aside-color);
         }
       }
@@ -178,5 +172,8 @@ aside {
   opacity: 1;
   visibility: 1;
   width: 80%;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 </style>

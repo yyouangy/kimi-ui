@@ -1,7 +1,7 @@
 <template>
-  <template v-if="visible">
+  <template v-if="dialogConfig.visible">
     <teleport to="body"
-      ><div class="k-dialog-Mask" @click="onClickMask" ></div>
+      ><div class="k-dialog-Mask" @click="onClickMask"></div>
       <div class="k-dialog-wrapper">
         <div class="k-dialog">
           <header>
@@ -12,8 +12,8 @@
             <slot name="content" />
           </main>
           <footer>
-            <k-button theme="primary" @click="ok">Ok</k-button>
-            <k-button @click="cancel">Cancel</k-button>
+            <k-button theme="primary" @click="dialogConfig.handleConfirm">确认</k-button>
+            <k-button @click="cancel">取消</k-button>
           </footer>
         </div>
       </div></teleport
@@ -21,34 +21,32 @@
   </template>
 </template>
 
-<script>
-import { watch } from "vue";
+<script lang="ts">
+import { watch, PropType } from "vue";
 import kButton from "./kButton.vue";
 
+interface DialogConfig {
+  title: String;
+  visible: Boolean;
+  closeByClickMask: Boolean;
+  showMask: Boolean;
+  handleConfirm: () => Promise<any>;
+  handleCancel: () => Promise<any>;
+}
 export default {
   props: {
-    title: {
-      type: String,
-      default: "提示",
-    },
-    visible: {
-      type: Boolean,
-      default: false,
-    },
-    //是否点击遮罩层即关闭Dialog
-    closeByClickMask: {
-      type: Boolean,
-      default: true,
-    },
-    showMask: {
-      type: Boolean,
-      default: true,
-    },
-    ok: {
-      type: Function,
-    },
-    cancel: {
-      type: Function,
+    dialogConfig: {
+      type: Object as PropType<DialogConfig>,
+      default: () => ({
+        title: "提示",
+        visible: false,
+        closeByClickMask: false,
+        showMask: true,
+        handleCancel: () => Promise.resolve(),
+        handleConfirm: () => Promise.resolve(),
+        // confirmProps: {},
+        // cancelProps: {}
+      }),
     },
   },
   components: {
@@ -59,17 +57,17 @@ export default {
       context.emit("update:visible", false);
     };
     const onClickMask = () => {
-      if (props.closeByClickMask) {
+      if (props.dialogConfig.closeByClickMask) {
         closeDialog();
       }
     };
-    const ok = () => {
-      if (props.ok?.() !== false) {
+    const ok =async  () => {
+      if ( await props.dialogConfig.handleConfirm?.() !== false) {
         closeDialog();
       }
     };
-    const cancel = () => {
-      if (props.cancel?.() !== false) {
+    const cancel = async() => {
+      if ( await props.dialogConfig.handleConfirm?.() !== false) {
         closeDialog();
       }
     };
@@ -119,7 +117,7 @@ $border-color: #d9d9d9;
   > footer {
     border-top: 1px solid $border-color;
     padding: 122px 16px;
-    text-align: right;
+    text-align: center;
   }
   &-close {
     position: relative;
