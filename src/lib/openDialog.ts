@@ -1,7 +1,7 @@
-import kDialog from "./kDialog.vue";
+import kDialog from "./dialog/kDialog.vue";
 import { createApp, h } from "vue";
 export const openDialog = (options) => {
-  const { title, content, ok, cancel } = options;
+  const { title, content, onConfirm, onCancel } = options;
   const div = document.createElement("div");
   document.body.appendChild(div);
   const close = () => {
@@ -13,14 +13,14 @@ export const openDialog = (options) => {
       return h(
         kDialog,
         {
-          visible: true,
-          "onUpdate:visible": (newVisible) => {
-            if (newVisible === false) {
+          active: true,
+          "onUpdate:active": (newActive) => {
+            if (newActive === false) {
               close();
             }
           },
-          ok,
-          cancel,
+          onConfirm,
+          onCancel,
         },
         {
           title: () => title,

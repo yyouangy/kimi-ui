@@ -115,7 +115,7 @@ aside {
   top: 65px;
   left: 0;
   width: 235px;
-  height:90%; 
+  height:99%; 
   box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   > h3 {
@@ -129,10 +129,10 @@ aside {
 
       > a {
         position: relative;
-        height: 6vh;
+        height: 4vh;
         display: block;
         padding: 0 50px;
-        line-height: 6vh;
+        line-height: 4vh;
 
         &:hover,
         &:focus {
@@ -151,7 +151,7 @@ aside {
           top: 0;
           right: 0;
           width: 5px;
-          height: 6vh;
+          height: 4vh;
           background-color: var(--aside-color);
         }
       }

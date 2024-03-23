@@ -10,19 +10,23 @@ import { openDialog } from "../../../lib/openDialog";
 import { ref } from "vue";
 export default {
   setup() {
-    const visibleDialog = ref(false);
+    const active = ref(false);
     const showDialog = () => {
-      visibleDialog.value = true;
+      active.value = true;
     };
     const showDialogDirectly = () => {
       openDialog({
         title: "标题",
         content: "内容",
-        ok: () => { return true },
-        cancel: () => { return false },
+        onConfirm: () => {
+          return true;
+        },
+        onCancel: () => {
+          return false;
+        },
       });
     };
-    return { visibleDialog, showDialog, showDialogDirectly };
+    return { active, showDialog, showDialogDirectly };
   },
 };
 </script>

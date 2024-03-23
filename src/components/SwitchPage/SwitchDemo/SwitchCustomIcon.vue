@@ -3,10 +3,10 @@
     </demo>
 <template>
   <k-switch v-model:value="opened">
-    <template v-slot:openIcon>
+    <template #openIcon>
       <k-icon name="icon-sun"></k-icon>
     </template>
-    <template v-slot:closeIcon>
+    <template #closeIcon>
       <k-icon name="icon-moon"></k-icon>
     </template>
   </k-switch>

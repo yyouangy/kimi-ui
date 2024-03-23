@@ -1,90 +1,79 @@
 <template>
-  <div class="k-checkbox">
-    <label :aria-disabled="isDisabled" @click="handleClick">
-      <input
-        ref="input"
-        type="checkbox"
-        :checked="currentChecked"
-        :disabled="isDisabled || readonly"
-        :tabindex="props.tabIndex"
-        :name="props.name"
-        @submit.prevent
-        @change="handleChange(!currentChecked)"
-        @click.stop
-      />
-      <span v-if="hasLabel || hasSlot">
-        <slot>{{ props.label }}</slot>
-      </span>
-    </label>
+  <div :class="{ 'group-default': !isVertical }">
+    <slot>
+      <k-check-box v-if="isControl" control>
+        {{ props.controlLabel }}
+      </k-check-box>
+      <template v-for="(item, index) in props.options" :key="index">
+        <k-check-box :control="item.control" :disabled="item.disabled">
+          {{ item }}
+        </k-check-box>
+      </template>
+    </slot>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, inject } from "vue";
+import { computed, provide, ref, reactive } from "vue";
 import { GROUP_STATE } from "./props";
-
-interface checkboxProps {
-  checked: Boolean;
-  value: String | Number;
-  label: String;
-  disabled: Boolean;
+interface checkboxGroupProps {
+  value: Array<any>;
+  options: Array<any>;
   control: Boolean;
-  loading: Boolean;
-  loadingLock: Boolean;
-  color: String;
-  onChange: null;
-  onClick: null;
+  vertical: Boolean;
+  controlLabel: String;
 }
-const props = withDefaults(defineProps<Partial<checkboxProps>>(), {
-  checked: false,
-  value: null,
-  label: "框",
-  disabled: false,
+const props = withDefaults(defineProps<Partial<checkboxGroupProps>>(), {
+  value: [],
+  options: [],
   control: false,
-  loading: false,
-  loadingLock: false,
-  color: "#000",
+  vertical: false,
+  controlLabel: "全选",
 });
-const emits = defineEmits(["update:checked", "onChange", "onClick"]);
-const currentChecked = ref(props.checked);
-const currentValue = computed(() => props.value);
-const computedSize = computed(() => props.size);
-const isDisabled = computed(
-  () => props.disabled === "" || props.disabled !== false
+provide(
+  GROUP_STATE,
+  reactive({
+    setItemChecked,
+    handleControlChange,
+  })
 );
-const groupState = inject(GROUP_STATE, null);
-const isLoading = computed(() => props.loading);
-const isLoadingLock = computed(() => props.loadingLock);
-const readonly = computed(() => isLoading.value && isLoadingLock.value);
-const hasLabel = computed(() => {
-  return props.label !== "";
-});
-const hasSlot = computed(() => {
-  return !!slots.default;
-});
-const handleChange = (checked: boolean) => {
-  console.log(groupState);
+const valueMap = new Map<string | number, boolean>();
+const currentValues = ref(props.value);
+const isControl = computed(
+  () => props.control === "" || props.control !== false
+);
+const isVertical = computed(
+  () => props.vertical === "" || props.vertical !== false
+);
+const emits = defineEmits(["update:value"]);
+function setItemChecked(value: string | number, checked: boolean) {
+  valueMap.set(value, checked);
+  updateValue();
+}
 
-  setCurrentChecked(checked);
-  if (groupState) {
-    console.log(currentValue.value);
-    groupState.setItemChecked(currentValue.value, checked);
-  }
+const updateValue = () => {
+  currentValues.value = [];
+  valueMap.forEach((checked, value) => {
+    if (checked) {
+      currentValues.value.push(value);
+    }
+  });
+  handleChange(currentValues.value);
 };
-
-function setCurrentChecked(checked: boolean) {
-  if (props.control && groupState?.handleControlChange) {
-    groupState.handleControlChange();
-  } else if (currentChecked.value !== checked) {
-    currentChecked.value = checked;
-    emitCheckEvent();
-  }
+function handleChange(value: string[]) {
+  emits("update:value", value);
 }
-function emitCheckEvent() {
-  const checked = currentChecked.value;
-  emits("update:checked", checked);
-  emits("onChange");
-}
+function handleControlChange() {
+      // 在 group 层进行更新, 未选满则全选, 反之全不选
+      const allValues = Array.from(valueMap.keys())
+      const checked = currentValues.value.length !== allValues.length
+      allValues.forEach(value => {
+        valueMap.set(value, checked)
+      })
+      console.log(allValues);
+      
+      updateValue()
+    }
 </script>
 
 <style lang="scss">
@@ -93,7 +82,9 @@ $border-color: #d9d9d9;
 $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
-
+.group-default {
+  display: flex;
+}
 .k-checkbox {
   padding: 6px;
 
@@ -102,8 +93,8 @@ $radius: 4px;
     cursor: pointer;
   }
 
-  .checked {
-  }
+  //   .checked {
+  //   }
 }
 
 .k-button {
